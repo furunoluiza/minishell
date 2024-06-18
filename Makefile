@@ -8,9 +8,7 @@ CC = cc
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror
-
-RLFLAG = -lreadline
+CFLAGS = -Wall -Wextra -Werror -lreadline
 
 LIBFT = lib/libft.a
 
@@ -18,7 +16,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C lib/libft
-	@$(CC) $(CFLAGS) $(SCRS) $(LIBFT) -o $(NAME) $(RLFLAG)
+	@$(CC) $(CFLAGS) $(SCRS) $(LIBFT) -o $(NAME)
 	@echo "\033[1;97m Minishell is ready! \033[0m"
 
 clean:
