@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfuruno- <lfuruno-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/18 14:08:20 by lfuruno-          #+#    #+#             */
-/*   Updated: 2024/06/18 14:08:23 by lfuruno-         ###   ########.fr       */
+/*   Created: 2024/06/18 17:51:53 by lfuruno-          #+#    #+#             */
+/*   Updated: 2024/06/18 17:52:00 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char **argv, char **envp)
+#include "../include/minishell.h"
+
+int error_messages(int error)
 {
-    (void) argc;
-    (void) argv;
-    (void) envp;
+    ft_putstr_fd(RED"Error!\n", 2);
+    if (error == -1)
+        ft_putstr_fd(WHITE"\tUsage:"ORANGE"./minishell\n", 2);
+    return(error);
 }

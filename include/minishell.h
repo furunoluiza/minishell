@@ -13,12 +13,31 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-/* libraries */
+/* -- LIBS -- */
+# include "../lib/libft/libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
-/* structs */
+/* -- COLORS -- */
+# define RED	"\001\033[38;2;255;0;0m\002"
+# define GREEN	"\001\033[38;2;0;255;0m\002"
+# define BLUE	"\001\033[38;2;0;0;255m\002"
+# define YELLOW	"\001\033[38;2;255;255;0m\002"
+# define WHITE	"\001\033[38;2;255;255;255m\002"
+# define ORANGE	"\001\033[38;2;255;165;0m\002"
+# define PURPLE	"\001\033[38;2;153;51;153m\002"
 
-/* errors */
+/* -- ERRORS -- */
+/* defines */
+# define ARGC_ERROR -1
+/* functions*/
+int error_messages(int error);
 
-/* builtins */
+/* -- STRUCTS -- */
+
+/* -- BUILTINS -- */
+
+/* -- UTILS -- */
+
 
 #endif

@@ -1,6 +1,7 @@
 NAME = minishell
 
-SCRS = main.c
+SCRS = src/main.c \
+		src/errors.c
 
 OBJS = $(SRCS:.c=.o)
 
