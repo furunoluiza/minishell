@@ -20,6 +20,10 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(SCRS) $(LIBFT) -o $(NAME)
 	@echo "\033[1;92m Minishell is ready! \033[0m"
 
+val: re
+	make clean
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=supressions.supp -s ./minishell
+
 clean:
 	@make clean -C lib/libft
 	$(RM) $(OBJS)
