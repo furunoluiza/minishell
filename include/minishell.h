@@ -15,6 +15,9 @@
 
 /* -- LIBS -- */
 # include "../lib/libft/libft.h"
+# include <unistd.h> //getcwd
+# include <stdio.h> //printf
+# include <stdlib.h> //malloc, free, null
 # include <readline/readline.h> //readline
 # include <readline/history.h> //add_history
 
@@ -26,39 +29,38 @@
 # define WHITE	"\001\033[38;2;255;255;255m\002"
 # define ORANGE	"\001\033[38;2;255;165;0m\002"
 # define PURPLE	"\001\033[38;2;153;51;153m\002"
-/* prompt */
-# define PROMPT \
-     __ __   _   __  _   _    __   _  _   ___   _     _      
-    |  V  | | | |  \| | | | /' _/ | || | | __| | |   | |     
-    | \_/ | | | | | ' | | | `._`. | >< | | _|  | |_  | |_    
-    |_| |_| |_| |_|\__| |_| |___/ |_||_| |___| |___| |___|   
-
-
 
 /* -- ERRORS -- */
-/* defines */
+/* defines errors */
 # define ARGC_ERROR -1
 /* functions*/
 int error_messages(int error);
 
 /* -- STRUCTS -- */
-typedef struct s_env
+typedef enum s_type
 {
-    char    *key;
-    char    *value;
-    struct s_env    *next;
-}               t_env;
+    CMD, //0
+    ARG, //1
+    REDIRECT_IN, //2
+    REDIRECT_OUT, //3
+    PIPE, //4
+    HEREDOC, //5
+    APPEND, //6
+    EXPAND, //7
+}   t_type;
 
-typedef struct s_shell
+typedef struct s_token
 {
-    t_env   *env;
-    char    **envp;
-}               t_shell;
+    char    *data;
+    t_type  type;
+    struct s_token   *next;
+    struct s_token   *prev;
+}   t_token;
 
+void    input_token(char *cmd);
 
 /* -- BUILTINS -- */
 
 /* -- UTILS -- */
-
 
 #endif

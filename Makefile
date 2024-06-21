@@ -1,7 +1,6 @@
 NAME = minishell
 
-SCRS = src/main.c \
-		src/errors.c
+SCRS = src/main.c src/errors.c src/token.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -9,15 +8,17 @@ CC = cc
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -lreadline
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT = lib/libft/libft.a
+
+RLFLAG = -lreadline
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C lib/libft
-	@$(CC) $(CFLAGS) $(SCRS) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SCRS) $(LIBFT) -o $(NAME) $(RLFLAG)
 	@echo "\033[1;92m Minishell is ready! \033[0m"
 
 val: re
