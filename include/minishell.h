@@ -54,13 +54,14 @@ typedef struct s_token
     char    *data;
     t_type  type;
     struct s_token   *next;
-    struct s_token   *prev;
 }   t_token;
-
-void    input_token(char *cmd);
 
 /* -- BUILTINS -- */
 
 /* -- UTILS -- */
+int    find_space(char cmd);
+void	free_list(t_token *list);
+void print_token_list(t_token *head); //apagar
+void    tokenizator(char *cmd);
 
 #endif
