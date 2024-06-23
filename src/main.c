@@ -22,12 +22,12 @@ int main(int argc, char **argv, char **envp)
         return (error_messages(ARGC_ERROR));
     while (42)
     {
-        cmd = readline("minishell$ ");
+        cmd = readline(make_prompt());
         if (!cmd)
             break;
         if (cmd)
         {
-            add_history(cmd); //se for vazio?
+            add_history(cmd);
             tokenizator(cmd);
         }
         free (cmd);

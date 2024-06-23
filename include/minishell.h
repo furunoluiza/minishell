@@ -18,6 +18,7 @@
 # include <unistd.h> //getcwd
 # include <stdio.h> //printf
 # include <stdlib.h> //malloc, free, null
+# include <limits.h> //path_max
 # include <readline/readline.h> //readline
 # include <readline/history.h> //add_history
 
@@ -56,12 +57,15 @@ typedef struct s_token
     struct s_token   *next;
 }   t_token;
 
+/* -- TOKEN -- */
+void    tokenizator(char *cmd);
+void    print_token_list(t_token *head); //apagar
+void	free_list(t_token *list);
+
 /* -- BUILTINS -- */
 
 /* -- UTILS -- */
-int    find_space(char cmd);
-void	free_list(t_token *list);
-void print_token_list(t_token *head); //apagar
-void    tokenizator(char *cmd);
+int     find_space(char cmd);
+char    *make_prompt(void);
 
 #endif
