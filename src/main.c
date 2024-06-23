@@ -12,27 +12,25 @@
 
 #include "../include/minishell.h"
 
-static char    create_prompt(void)
-{
-    char    *prompt;
-
-    cmd = readline(PROMPT);
-    if (!cmd)
-        break;
-    if (cmd)
-        add_history(cmd);
-    free (cmd);
-}
-
 int main(int argc, char **argv, char **envp)
-{  
+{ 
+    char    *cmd;
     (void) argv;
     (void) envp;
-    prompt = "minishell"
+
     if (argc != 1)
         return (error_messages(ARGC_ERROR));
     while (42)
     {
-        create_prompt();
+        cmd = readline(make_prompt());
+        if (!cmd)
+            break;
+        if (cmd)
+        {
+            add_history(cmd);
+            tokenizator(cmd);
+        }
+        free (cmd);
     }
+    return(0);
 }
