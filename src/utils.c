@@ -1,3 +1,5 @@
+#include "../include/minishell.h"
+
 int    find_space(char cmd)
 {
     if (cmd == ' ' || (cmd >= 7 && cmd <= 13))

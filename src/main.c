@@ -28,7 +28,7 @@ int main(int argc, char **argv, char **envp)
         if (cmd)
         {
             add_history(cmd); //se for vazio?
-            input_token(cmd);
+            tokenizator(cmd);
         }
         free (cmd);
     }

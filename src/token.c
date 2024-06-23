@@ -56,6 +56,21 @@ static t_type    token_type(char *cmd, int i)
     return (type);
 }
 
+static int  type_index(t_type type, char *cmd, int i)
+{
+    if (type == HEREDOC || type == APPEND)
+            i += 2;
+    else if (type == CMD)
+    {
+        while (cmd[i] && !find_space(cmd[i]) && 
+                cmd[i] != '<' && cmd [i] != '>' && cmd[i] != '|')
+            i++;
+    }
+    else
+        i++;
+    return (i);
+}
+
 void    tokenizator(char *cmd)
 {
     int     i;
@@ -72,18 +87,10 @@ void    tokenizator(char *cmd)
             i++;
         start = i;
         type = token_type(cmd, i);
-        if (type == HEREDOC || type == APPEND)
-            i += 2;
-        else if (type == CMD)
-        {
-            while (cmd[i] && !find_space(cmd[i]) && 
-                    cmd[i] != '<' && cmd [i] != '>' && cmd[i] != '|')
-                i++;
-        }
-        else
-            i++;
+        i = type_index(type, cmd, i);
         array = data_array(cmd, start, i);
         add_node(&list, array, type);
     }
     print_token_list(list);
+    free_list(list);
 }
