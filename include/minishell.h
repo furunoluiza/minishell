@@ -48,6 +48,7 @@ typedef enum s_type
     HEREDOC, //5
     APPEND, //6
     EXPAND, //7
+    FLAG, //8
 }   t_type;
 
 typedef struct s_token
