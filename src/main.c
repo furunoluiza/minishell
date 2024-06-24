@@ -22,15 +22,15 @@ int main(int argc, char **argv, char **envp)
         return (error_messages(ARGC_ERROR));
     while (42)
     {
-        cmd = readline(make_prompt());
+        cmd = readline("minishell$ ");
         if (!cmd)
-            break;
-        if (cmd)
+            break ;
+        if (*cmd)
         {
             add_history(cmd);
             tokenizator(cmd);
         }
-        free (cmd);
     }
+    rl_clear_history();
     return(0);
 }

@@ -51,6 +51,9 @@ static t_type    token_type(char *cmd, int i)
         type = REDIRECT_OUT;
     else if (cmd[i] == '|')
         type = PIPE;
+    else if (cmd[i] == '-' && ft_isalpha(cmd[i + 1]))
+        type = FLAG;
+    //else if (cmd[i] == '$' && )
     else
         type = CMD;
     return (type);
@@ -58,7 +61,7 @@ static t_type    token_type(char *cmd, int i)
 
 static int  type_index(t_type type, char *cmd, int i)
 {
-    if (type == HEREDOC || type == APPEND)
+    if (type == HEREDOC || type == APPEND || type == FLAG)
             i += 2;
     else if (type == CMD)
     {
@@ -92,5 +95,6 @@ void    tokenizator(char *cmd)
         add_node(&list, array, type);
     }
     print_token_list(list);
+    set_null(cmd);
     free_list(list);
 }

@@ -48,6 +48,7 @@ typedef enum s_type
     HEREDOC, //5
     APPEND, //6
     EXPAND, //7
+    FLAG, //8
 }   t_type;
 
 typedef struct s_token
@@ -60,12 +61,16 @@ typedef struct s_token
 /* -- TOKEN -- */
 void    tokenizator(char *cmd);
 void    print_token_list(t_token *head); //apagar
-void	free_list(t_token *list);
 
 /* -- BUILTINS -- */
 
+/* -- FREE -- */
+void    set_null(char *str);
+void	free_list(t_token *list);
+
 /* -- UTILS -- */
 int     find_space(char cmd);
+char	*ft_strjoin_gnl(char *s1, char *s2);
 char    *make_prompt(void);
 
 #endif
