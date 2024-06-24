@@ -61,12 +61,16 @@ typedef struct s_token
 /* -- TOKEN -- */
 void    tokenizator(char *cmd);
 void    print_token_list(t_token *head); //apagar
-void	free_list(t_token *list);
 
 /* -- BUILTINS -- */
 
+/* -- FREE -- */
+void    set_null(char *str);
+void	free_list(t_token *list);
+
 /* -- UTILS -- */
 int     find_space(char cmd);
+char	*ft_strjoin_gnl(char *s1, char *s2);
 char    *make_prompt(void);
 
 #endif

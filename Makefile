@@ -1,6 +1,6 @@
 NAME = minishell
 
-SCRS = src/main.c src/errors.c src/token.c src/utils.c src/prompt.c
+SCRS = src/main.c src/errors.c src/token.c src/utils.c src/free.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -23,7 +23,7 @@ $(NAME): $(OBJS)
 
 val: re
 	make clean
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=supressions.supp -s ./minishell
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=./sup/supressions.supp -s ./minishell
 
 clean:
 	@make clean -C lib/libft

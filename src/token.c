@@ -53,6 +53,7 @@ static t_type    token_type(char *cmd, int i)
         type = PIPE;
     else if (cmd[i] == '-' && ft_isalpha(cmd[i + 1]))
         type = FLAG;
+    //else if (cmd[i] == '$' && )
     else
         type = CMD;
     return (type);
@@ -94,5 +95,6 @@ void    tokenizator(char *cmd)
         add_node(&list, array, type);
     }
     print_token_list(list);
+    set_null(cmd);
     free_list(list);
 }

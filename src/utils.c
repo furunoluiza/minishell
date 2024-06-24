@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lfuruno- <lfuruno-@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/24 16:54:09 by lfuruno-          #+#    #+#             */
+/*   Updated: 2024/06/24 16:54:11 by lfuruno-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int    find_space(char cmd)
@@ -7,19 +19,7 @@ int    find_space(char cmd)
     return (0);
 }
 
-void	free_list(t_token *list)
-{
-	t_token	*temp;
-
-	while (list)
-	{
-		temp = list;
-		list = list->next;
-		free(temp);
-	}
-}
-
-void print_token_list(t_token *head) 
+void print_token_list(t_token *head) //apagar
 {
     t_token *current = head;
 
