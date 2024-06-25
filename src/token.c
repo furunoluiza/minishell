@@ -53,7 +53,8 @@ static t_type    token_type(char *cmd, int i)
         type = PIPE;
     else if (cmd[i] == '-' && ft_isalpha(cmd[i + 1]))
         type = FLAG;
-    else if (cmd[i] == '$' && (ft_isalpha(cmd[i + 1]) || cmd[i + 1] == '_'))
+    else if (cmd[i] == '$' && (ft_isalpha(cmd[i + 1]) || 
+            cmd[i + 1] == '_' || cmd[i + 1] == '(' || cmd[i + 1] == '{'))
         type = ENV_VAR;
     else
         type = CMD;
@@ -71,18 +72,12 @@ static int  type_index(t_type type, char *cmd, int i)
             if (cmd[i++] == '{')
             {
                 while (cmd[i] && cmd[i] != '}')
-                {
                     i++;
-                    break;
-                }
             }
             else if (cmd[i++] == '(')
             {
                 while (cmd[i] && cmd[i] != ')')
-                {
                     i++;
-                    break;
-                }
             }
             i++;
         }
