@@ -24,7 +24,7 @@ int main(int argc, char **argv, char **envp)
     {
         cmd = readline("minishell$ ");
         if (!cmd)
-            break ;
+            cmd = ft_strdup("exit");
         if (*cmd)
         {
             add_history(cmd);

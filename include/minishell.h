@@ -15,10 +15,9 @@
 
 /* -- LIBS -- */
 # include "../lib/libft/libft.h"
-# include <unistd.h> //getcwd
+# include <unistd.h>
 # include <stdio.h> //printf
 # include <stdlib.h> //malloc, free, null
-# include <limits.h> //path_max
 # include <readline/readline.h> //readline
 # include <readline/history.h> //add_history
 
@@ -49,6 +48,7 @@ typedef enum s_type
     APPEND, //6
     EXPAND, //7
     FLAG, //8
+    ENV_VAR, //9
 }   t_type;
 
 typedef struct s_token
@@ -60,6 +60,8 @@ typedef struct s_token
 
 /* -- TOKEN -- */
 void    tokenizator(char *cmd);
+int     index_envvar(char *cmd, int i);
+int     index_cmd(char *cmd, int i);
 void    print_token_list(t_token *head); //apagar
 
 /* -- BUILTINS -- */
@@ -70,7 +72,6 @@ void	free_list(t_token *list);
 
 /* -- UTILS -- */
 int     find_space(char cmd);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-char    *make_prompt(void);
+
 
 #endif
