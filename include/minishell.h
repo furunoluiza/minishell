@@ -15,10 +15,9 @@
 
 /* -- LIBS -- */
 # include "../lib/libft/libft.h"
-# include <unistd.h> //getcwd
+# include <unistd.h>
 # include <stdio.h> //printf
 # include <stdlib.h> //malloc, free, null
-# include <limits.h> //path_max
 # include <readline/readline.h> //readline
 # include <readline/history.h> //add_history
 
