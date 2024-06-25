@@ -53,7 +53,8 @@ static t_type    token_type(char *cmd, int i)
         type = PIPE;
     else if (cmd[i] == '-' && ft_isalpha(cmd[i + 1]))
         type = FLAG;
-    //else if (cmd[i] == '$' && )
+    else if (cmd[i] == '$' && (ft_isalpha(cmd[i + 1]) || cmd[i + 1] == '_'))
+        type = ENV_VAR;
     else
         type = CMD;
     return (type);
@@ -63,10 +64,33 @@ static int  type_index(t_type type, char *cmd, int i)
 {
     if (type == HEREDOC || type == APPEND || type == FLAG)
             i += 2;
+    else if (type == ENV_VAR)
+    {
+        while (cmd[i] && !find_space(cmd[i]))
+        {
+            if (cmd[i++] == '{')
+            {
+                while (cmd[i] && cmd[i] != '}')
+                {
+                    i++;
+                    break;
+                }
+            }
+            else if (cmd[i++] == '(')
+            {
+                while (cmd[i] && cmd[i] != ')')
+                {
+                    i++;
+                    break;
+                }
+            }
+            i++;
+        }
+    }
     else if (type == CMD)
     {
         while (cmd[i] && !find_space(cmd[i]) && 
-                cmd[i] != '<' && cmd [i] != '>' && cmd[i] != '|')
+                cmd[i] != '<' && cmd [i] != '>' && cmd[i] != '|' && cmd[i] != '$')
             i++;
     }
     else
@@ -95,6 +119,5 @@ void    tokenizator(char *cmd)
         add_node(&list, array, type);
     }
     print_token_list(list);
-    set_null(cmd);
     free_list(list);
 }
