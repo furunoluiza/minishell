@@ -61,6 +61,7 @@ typedef struct s_token
 
 /* -- TOKEN -- */
 void    tokenizator(char *cmd);
+t_type  token_type(char *cmd, int i);
 int     index_envvar(char *cmd, int i);
 int     index_single(char *cmd, int i);
 int     index_double(char *cmd, int i);
