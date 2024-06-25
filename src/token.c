@@ -64,30 +64,11 @@ static t_type    token_type(char *cmd, int i)
 static int  type_index(t_type type, char *cmd, int i)
 {
     if (type == HEREDOC || type == APPEND || type == FLAG)
-            i += 2;
+        i += 2;
     else if (type == ENV_VAR)
-    {
-        while (cmd[i] && !find_space(cmd[i]))
-        {
-            if (cmd[i++] == '{')
-            {
-                while (cmd[i] && cmd[i] != '}')
-                    i++;
-            }
-            else if (cmd[i++] == '(')
-            {
-                while (cmd[i] && cmd[i] != ')')
-                    i++;
-            }
-            i++;
-        }
-    }
+        i = index_envvar(cmd, i);
     else if (type == CMD)
-    {
-        while (cmd[i] && !find_space(cmd[i]) && 
-                cmd[i] != '<' && cmd [i] != '>' && cmd[i] != '|' && cmd[i] != '$')
-            i++;
-    }
+        i = index_cmd(cmd, i);
     else
         i++;
     return (i);
