@@ -2,13 +2,8 @@
 #include "../include/minishell.h"
 
 int  index_envvar(char *cmd, int i)
-{
-    if (cmd[i++] == '{')
-        while (cmd[i] && cmd[i++] != '}');
-    else if (cmd[i++] == '(')
-        while (cmd[i] && cmd[i++] != ')');
-    else
-        while(cmd[i] && !find_space(cmd[i++]));
+{   
+    while(cmd[i] && !find_space(cmd[i++]));
     return (i);
 }
 

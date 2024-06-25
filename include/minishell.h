@@ -49,6 +49,7 @@ typedef enum s_type
     EXPAND, //7
     FLAG, //8
     ENV_VAR, //9
+    DOUBLE_QUOTE, //10
 }   t_type;
 
 typedef struct s_token
