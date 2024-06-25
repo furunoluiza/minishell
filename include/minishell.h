@@ -46,9 +46,10 @@ typedef enum s_type
     PIPE, //4
     HEREDOC, //5
     APPEND, //6
-    EXPAND, //7
-    FLAG, //8
-    ENV_VAR, //9
+    FLAG, //7
+    ENV_VAR, //8
+    SINGLE_QUOTE, //9
+    DOUBLE_QUOTE, //10
 }   t_type;
 
 typedef struct s_token
@@ -60,7 +61,10 @@ typedef struct s_token
 
 /* -- TOKEN -- */
 void    tokenizator(char *cmd);
+t_type  token_type(char *cmd, int i);
 int     index_envvar(char *cmd, int i);
+int     index_single(char *cmd, int i);
+int     index_double(char *cmd, int i);
 int     index_cmd(char *cmd, int i);
 void    print_token_list(t_token *head); //apagar
 

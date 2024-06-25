@@ -37,36 +37,16 @@ static char *data_array(char *cmd, int start, int end)
     return (array);
 }
 
-static t_type    token_type(char *cmd, int i)
-{
-    t_type  type;
-
-    if (cmd[i] == '<' && cmd[i + 1] == '<')
-        type = HEREDOC;
-    else if (cmd[i] == '>' && cmd[i + 1] == '>')
-        type = APPEND;
-    else if (cmd[i] == '<')
-        type = REDIRECT_IN;
-    else if (cmd[i] == '>')
-        type = REDIRECT_OUT;
-    else if (cmd[i] == '|')
-        type = PIPE;
-    else if (cmd[i] == '-' && ft_isalpha(cmd[i + 1]))
-        type = FLAG;
-    else if (cmd[i] == '$' && (ft_isalpha(cmd[i + 1]) || 
-            cmd[i + 1] == '_' || cmd[i + 1] == '(' || cmd[i + 1] == '{'))
-        type = ENV_VAR;
-    else
-        type = CMD;
-    return (type);
-}
-
 static int  type_index(t_type type, char *cmd, int i)
 {
     if (type == HEREDOC || type == APPEND || type == FLAG)
         i += 2;
     else if (type == ENV_VAR)
         i = index_envvar(cmd, i);
+    else if (type == SINGLE_QUOTE)
+        i = index_single(cmd, i);
+    else if (type == DOUBLE_QUOTE)
+        i = index_double(cmd, i);
     else if (type == CMD)
         i = index_cmd(cmd, i);
     else
