@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void    set_null(char *str)
+void    set_null(char *str) //n pode
 {
     free(str);
     str = NULL;
@@ -26,6 +26,8 @@ void	free_list(t_token *list)
 	{
 		temp = list;
 		list = list->next;
+		free(temp->data);
 		free(temp);
 	}
+	list = NULL;
 }
