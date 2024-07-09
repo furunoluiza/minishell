@@ -66,7 +66,7 @@ static int  type_index(t_type type, char *cmd, int i)
     return (i);
 }
 
-void    tokenizator(char *cmd)
+t_token    *tokenizator(char *cmd)
 {
     int     i;
     int     start;
@@ -87,5 +87,5 @@ void    tokenizator(char *cmd)
         add_node(&list, array, type);
     }
     print_token_list(list);
-    free_list(list);
+    return(list);
 }

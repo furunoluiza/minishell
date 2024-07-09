@@ -17,9 +17,10 @@ int main(int argc, char **argv, char **envp)
     char    *cmd;
     (void) argv;
     (void) envp;
+    t_token *token;
 
     if (argc != 1)
-        return (error_messages(ARGC_ERROR));
+        return (error_messages(ARGC_ERROR, NULL));
     while (42)
     {
         cmd = readline("minishell$ ");
@@ -28,7 +29,9 @@ int main(int argc, char **argv, char **envp)
         if (*cmd)
         {
             add_history(cmd);
-            tokenizator(cmd);
+            token = tokenizator(cmd);
+            parsing(token);
+            free_list(token);
         }
     }
     rl_clear_history();
