@@ -58,6 +58,8 @@ typedef struct s_token
 # define ARGC_ERROR -1
 # define SYNTAX_ERROR -2
 # define NEWLINE_ERROR -3
+# define QUOTE_ERROR -4
+
 /* functions*/
 int error_messages(int error, t_token *token);
 

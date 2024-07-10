@@ -25,5 +25,7 @@ int error_messages(int error, t_token *token)
     }
     else if (error == -3)
         ft_putstr_fd(WHITE"syntax error near unexpected token `newline'\n", 2);
+    else if (error == -4)
+        ft_putstr_fd(WHITE"only parses closed quotes\n", 2);
     return(error);
 }

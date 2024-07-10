@@ -73,11 +73,39 @@ static int val_init_end(t_token *token)
     return (0);
 }
 
+static int val_quotes(t_token *token)
+{
+    int i;
+    int find;
+    char quote;
+
+    while(token)
+    {
+        if (token->type == SINGLE_QUOTE || token->type == DOUBLE_QUOTE)
+        {
+            quote = token->data[0];
+            find = 0;
+            i = 1;
+            while (token->data[i] != '\0')
+            {
+                if (token->data[i++] == quote)
+                {
+                    find = 1;
+                    break ;
+                }
+            }
+            if (!find)
+                return (error_messages(-4, token));
+        }
+        token = token->next;
+    }
+    return (0);
+}
+
 int    parsing(t_token *token)
 {
     if (!val_redirects_pipe(token) && !val_heredoc_append(token) 
-        && !val_init_end(token))
+        && !val_init_end(token) && !val_quotes(token))
             return (1);
-    //tratar fechamento de aspas
     return(0);
 }
