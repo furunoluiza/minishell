@@ -107,5 +107,7 @@ int    parsing(t_token *token)
     if (!val_redirects_pipe(token) && !val_heredoc_append(token) 
         && !val_init_end(token) && !val_quotes(token))
             return (1);
+    if (!heredoc_exist(token))
+            return (1);
     return(0);
 }
