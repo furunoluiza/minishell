@@ -12,10 +12,20 @@
 
 #include "../include/minishell.h"
 
-int error_messages(int error)
+int error_messages(int error, t_token *token)
 {
-    ft_putstr_fd(RED"Error!\n", 2);
+    ft_putstr_fd(RED"Error: ", 2);
     if (error == -1)
         ft_putstr_fd(WHITE"\tUsage:"ORANGE"./minishell\n", 2);
+    else if (error == -2)
+    {
+        ft_putstr_fd(WHITE"syntax error near unexpected token `", 2);
+        ft_putstr_fd(token->data, 2);
+        ft_putstr_fd("\'\n", 2);
+    }
+    else if (error == -3)
+        ft_putstr_fd(WHITE"syntax error near unexpected token `newline'\n", 2);
+    else if (error == -4)
+        ft_putstr_fd(WHITE"only parses closed quotes\n", 2);
     return(error);
 }

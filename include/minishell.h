@@ -30,12 +30,6 @@
 # define ORANGE	"\001\033[38;2;255;165;0m\002"
 # define PURPLE	"\001\033[38;2;153;51;153m\002"
 
-/* -- ERRORS -- */
-/* defines errors */
-# define ARGC_ERROR -1
-/* functions*/
-int error_messages(int error);
-
 /* -- STRUCTS -- */
 typedef enum s_type
 {
@@ -59,14 +53,27 @@ typedef struct s_token
     struct s_token   *next;
 }   t_token;
 
+/* -- ERRORS -- */
+/* defines errors */
+# define ARGC_ERROR -1
+# define SYNTAX_ERROR -2
+# define NEWLINE_ERROR -3
+# define QUOTE_ERROR -4
+
+/* functions*/
+int error_messages(int error, t_token *token);
+
 /* -- TOKEN -- */
-void    tokenizator(char *cmd);
+t_token    *tokenizator(char *cmd);
 t_type  token_type(char *cmd, int i);
 int     index_envvar(char *cmd, int i);
 int     index_single(char *cmd, int i);
 int     index_double(char *cmd, int i);
 int     index_cmd(char *cmd, int i);
 void    print_token_list(t_token *head); //apagar
+
+/* -- PARSING -- */
+int    parsing(t_token *token);
 
 /* -- BUILTINS -- */
 
@@ -78,4 +85,4 @@ void	free_list(t_token *list);
 int     find_space(char cmd);
 
 
-#endif
+# endif

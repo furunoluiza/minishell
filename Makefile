@@ -1,6 +1,6 @@
 NAME = minishell
 
-SCRS = src/main.c src/errors.c src/token.c src/utils.c src/free.c src/index.c src/token_types.c
+SCRS = src/main.c src/errors.c src/token.c src/utils.c src/free.c src/index.c src/token_types.c src/parsing.c
 
 OBJS = $(SRCS:.c=.o)
 

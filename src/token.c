@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lfuruno- <lfuruno-@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 15:33:46 by lfuruno-          #+#    #+#             */
+/*   Updated: 2024/06/26 15:33:49 by lfuruno-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static void	add_node(t_token **list, char *array, t_type type)
@@ -54,7 +66,7 @@ static int  type_index(t_type type, char *cmd, int i)
     return (i);
 }
 
-void    tokenizator(char *cmd)
+t_token    *tokenizator(char *cmd)
 {
     int     i;
     int     start;
@@ -75,5 +87,5 @@ void    tokenizator(char *cmd)
         add_node(&list, array, type);
     }
     print_token_list(list);
-    free_list(list);
+    return(list);
 }
